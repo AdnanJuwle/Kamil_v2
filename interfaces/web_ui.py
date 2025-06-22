@@ -1,6 +1,7 @@
 import threading
 import logging
 import os
+import json
 from flask import Flask, render_template, request, jsonify, session
 from core.agent import SAFETY_KEYWORDS
 import uuid
@@ -63,6 +64,37 @@ def chat():
     except Exception as e:
         logger.exception("Error processing request")
         return jsonify({'response': f"Error: {str(e)}"}), 500
+
+@app.route('/file_operation', methods=['POST'])
+def file_operation():
+    try:
+        operation = request.json.get('operation')
+        filename = request.json.get('filename')
+        content = request.json.get('content', '')
+        mode = request.json.get('mode', 'replace')
+        
+        agent = app.config['AGENT']
+        file_ops = agent.tool_registry.get_tool('file_ops')
+        
+        if operation == 'create':
+            result = file_ops.execute('create_file', filename=filename, content=content)
+        elif operation == 'read':
+            result = file_ops.execute('read_file', filename=filename)
+        elif operation == 'modify':
+            result = file_ops.execute('modify_file', filename=filename, content=content, mode=mode)
+        elif operation == 'delete':
+            result = file_ops.execute('delete_file', filename=filename)
+        elif operation == 'execute':
+            result = file_ops.execute('execute_file', filename=filename)
+        elif operation == 'list':
+            result = file_ops.execute('list_files')
+        else:
+            return jsonify({'error': 'Invalid operation'}), 400
+            
+        return jsonify({'result': result})
+    except Exception as e:
+        logger.error(f"File operation error: {str(e)}")
+        return jsonify({'error': str(e)}), 500
 
 @app.errorhandler(404)
 def page_not_found(e):

@@ -20,11 +20,9 @@ class ToolRegistry:
         }
         self.logger.info("Tool registry initialized")
 
-    def set_llm_engine(self, llm_engine):
-        self.llm_engine = llm_engine
-        # Reinitialize tools with the new LLM engine
-        self._initialize_tools()
-        self.logger.info("LLM engine set for tools")
-
     def get_tool(self, tool_name):
         return self.tools.get(tool_name)
+
+    def register_tool(self, name, tool):
+        self.tools[name] = tool
+        self.logger.info(f"Registered new tool: {name}")
