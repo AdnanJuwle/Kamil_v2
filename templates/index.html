@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kamil Web Interface</title>
+    <style>
+        :root {
+            --primary: #4e54c8;
+            --secondary: #8f94fb;
+            --dark: #1a1a2e;
+            --light: #f0f0f0;
+            --success: #4caf50;
+            --warning: #ff9800;
+            --danger: #f44336;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(to right, #f5f7fa, #e4e7f1);
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        #chat-box {
+            height: 500px;
+            border: 1px solid #ddd;
+            padding: 15px;
+            overflow-y: auto;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .message {
+            margin-bottom: 15px;
+            padding: 12px;
+            border-radius: 12px;
+            max-width: 80%;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        
+        .user-message {
+            background-color: var(--primary);
+            color: white;
+            margin-left: auto;
+            border-bottom-right-radius: 5px;
+        }
+        
+        .kamil-message {
+            background-color: #e3f2fd;
+            margin-right: auto;
+            border-bottom-left-radius: 5px;
+        }
+        
+        .system-message {
+            background-color: #e8f5e9;
+            margin: 10px auto;
+            text-align: center;
+            font-style: italic;
+            max-width: 90%;
+        }
+        
+        .code-block {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Fira Code', 'Consolas', monospace;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            margin: 10px 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .input-container {
+            display: flex;
+            gap: 10px;
+        }
+        
+        #user-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            font-size: 16px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        #user-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(78, 84, 200, 0.2);
+        }
+        
+        #send-btn {
+            padding: 12px 25px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        #send-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        #send-btn:active {
+            transform: translateY(0);
+        }
+        
+        .typing-indicator {
+            display: none;
+            padding: 10px;
+            text-align: left;
+            color: #666;
+            font-style: italic;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+            
+            #chat-box {
+                height: 400px;
+            }
+            
+            .message {
+                max-width: 90%;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="header">
+        <h1>Kamil AI Assistant</h1>
+        <p>Advanced conversational AI with task execution capabilities</p>
+    </div>
+    
+    <div id="chat-box">
+        <div class="message system-message">
+            Welcome to Kamil! I'm your AI assistant. How can I help you today?
+        </div>
+    </div>
+    
+    <div class="typing-indicator" id="typing-indicator">
+        Kamil is thinking...
+    </div>
+    
+    <div class="input-container">
+        <input type="text" id="user-input" placeholder="Type your message or request..." autocomplete="off">
+        <button id="send-btn" onclick="sendMessage()">Send</button>
+    </div>
+
+    <script>
+        // DOM elements
+        const chatBox = document.getElementById('chat-box');
+        const userInput = document.getElementById('user-input');
+        const sendBtn = document.getElementById('send-btn');
+        const typingIndicator = document.getElementById('typing-indicator');
+        
+        // Focus input on load
+        userInput.focus();
+        
+        // Add message to chat
+        function addMessage(sender, text, isCode = false, isSystem = false, crisisResources = null) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${sender}-message`;
+            
+            if (isSystem) {
+                messageDiv.classList.add('system-message');
+            }
+            
+            if (isCode) {
+                const codeBlock = document.createElement('pre');
+                codeBlock.className = 'code-block';
+                codeBlock.textContent = text;
+                messageDiv.appendChild(codeBlock);
+            } else {
+                messageDiv.innerHTML = `<strong>${sender}:</strong> ${text}`;
+            }
+            
+            chatBox.appendChild(messageDiv);
+            
+            if (crisisResources) {
+                const resourcesDiv = document.createElement('div');
+                resourcesDiv.className = 'message system-message';
+                resourcesDiv.innerHTML = `<strong>Crisis Resources:</strong><br>${crisisResources.join('<br>')}`;
+                chatBox.appendChild(resourcesDiv);
+            }
+            
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+        
+        // Show typing indicator
+        function showTyping() {
+            typingIndicator.style.display = 'block';
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+        
+        // Hide typing indicator
+        function hideTyping() {
+            typingIndicator.style.display = 'none';
+        }
+        
+        // Send message to server
+        async function sendMessage() {
+            const message = userInput.value.trim();
+            if (!message) return;
+            
+            // Add user message to chat
+            addMessage('user', message);
+            userInput.value = '';
+            showTyping();
+            
+            try {
+                const response = await fetch('/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: message })
+                });
+                
+                const data = await response.json();
+                hideTyping();
+                
+                if (data.crisis) {
+                    addMessage('kamil', data.response, false, false, data.resources);
+                } else {
+                    // Check if response contains code block
+                    if (data.response.includes('```python')) {
+                        const code = data.response.replace('```python', '').replace('```', '').trim();
+                        addMessage('kamil', code, true);
+                    } else {
+                        addMessage('kamil', data.response);
+                    }
+                }
+            } catch (error) {
+                hideTyping();
+                addMessage('system', 'Error: ' + error.message, false, true);
+            }
+        }
+        
+        // Send message on Enter key
+        userInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendMessage();
+        });
+        
+        // Example of adding a sample message
+        setTimeout(() => {
+            addMessage('kamil', "Hello! I'm Kamil, your AI assistant. You can ask me to perform tasks, answer questions, or just chat!", false, false);
+        }, 1000);
+    </script>
+</body>
+</html>

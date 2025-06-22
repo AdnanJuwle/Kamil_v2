@@ -1,0 +1,7 @@
+numpy
+flask
+prompt-toolkit
+sounddevice
+psutil
+requests
+schedule

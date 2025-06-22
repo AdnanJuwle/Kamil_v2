@@ -1,0 +1,474 @@
+2025-06-22 21:41:46,030 - VectorDB - INFO - Vector database initialized
+2025-06-22 21:41:46,030 - KnowledgeGraph - INFO - Knowledge graph initialized
+2025-06-22 21:41:46,030 - VectorMemory - INFO - Memory system initialized
+2025-06-22 21:41:46,030 - ModelPool - INFO - Model pool initialized with 3 specialists
+2025-06-22 21:41:46,030 - Automation - INFO - Automation engine initialized
+2025-06-22 21:42:58,370 - VectorDB - INFO - Vector database initialized
+2025-06-22 21:42:58,370 - KnowledgeGraph - INFO - Knowledge graph initialized
+2025-06-22 21:42:58,370 - VectorMemory - INFO - Memory system initialized
+2025-06-22 21:42:58,370 - ModelPool - INFO - Model pool initialized with 3 specialists
+2025-06-22 21:42:58,370 - Automation - INFO - Automation engine initialized
+2025-06-22 21:42:58,370 - ToolRegistry - INFO - Tool registry initialized
+2025-06-22 21:42:58,370 - KamilAgent - INFO - Agent initialized
+2025-06-22 21:43:12,198 - WebUI - INFO - Web server started on http://localhost:5000
+2025-06-22 21:44:07,766 - VectorDB - INFO - Vector database initialized
+2025-06-22 21:44:07,766 - KnowledgeGraph - INFO - Knowledge graph initialized
+2025-06-22 21:44:07,766 - VectorMemory - INFO - Memory system initialized
+2025-06-22 21:44:07,766 - ModelPool - INFO - Model pool initialized with 3 specialists
+2025-06-22 21:44:07,766 - Automation - INFO - Automation engine initialized
+2025-06-22 21:44:07,766 - ToolRegistry - INFO - Tool registry initialized
+2025-06-22 21:44:07,766 - KamilAgent - INFO - Agent initialized
+2025-06-22 21:44:53,007 - KamilAgent - INFO - Processing request: create a complex python code that calculates accurate bmi and gives approriate advice based on it to get healthy
+2025-06-22 21:44:53,024 - KamilAgent - INFO - Generated plan: {'task': 'coding', 'steps': [{'action': 'analyze_requirements', 'tool': 'code_analyzer'}, {'action': 'generate_code', 'tool': 'code_generator'}, {'action': 'test_code', 'tool': 'code_tester'}]}
+2025-06-22 21:44:53,024 - TaskOrchestrator - INFO - Executing plan with 3 steps
+2025-06-22 21:44:53,024 - TaskOrchestrator - WARNING - Tool not found: code_analyzer
+2025-06-22 21:44:53,024 - TaskOrchestrator - WARNING - Tool not found: code_generator
+2025-06-22 21:44:53,024 - TaskOrchestrator - WARNING - Tool not found: code_tester
+2025-06-22 21:44:53,024 - VectorDB - INFO - Added vector to database
+2025-06-22 21:44:53,024 - CLI - ERROR - CLI error: 'list' object has no attribute 'split'
+2025-06-22 21:47:07,153 - VectorDB - INFO - Vector database initialized
+2025-06-22 21:47:07,153 - KnowledgeGraph - INFO - Knowledge graph initialized
+2025-06-22 21:47:07,154 - VectorMemory - INFO - Memory system initialized
+2025-06-22 21:47:07,154 - ModelPool - INFO - Model pool initialized with 3 specialists
+2025-06-22 21:47:07,154 - Automation - INFO - Automation engine initialized
+2025-06-22 21:47:07,154 - ToolRegistry - INFO - Tool registry initialized
+2025-06-22 21:47:07,154 - KamilAgent - INFO - Agent initialized
+2025-06-22 21:47:08,958 - WebUI - INFO - Web server started on http://localhost:5000
+2025-06-22 21:47:08,959 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.45:5000
+2025-06-22 21:47:08,959 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-22 21:47:14,994 - interfaces.web_ui - ERROR - Exception on / [GET]
+Traceback (most recent call last):
+  File "/home/adnan/.local/lib/python3.10/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/adnan/.local/lib/python3.10/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/adnan/.local/lib/python3.10/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/adnan/.local/lib/python3.10/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/home/adnan/Kamil_v2/interfaces/web_ui.py", line 10, in index
+    return render_template('index.html')
+  File "/home/adnan/.local/lib/python3.10/site-packages/flask/templating.py", line 149, in render_template
+    template = app.jinja_env.get_or_select_template(template_name_or_list)
+  File "/home/adnan/.local/lib/python3.10/site-packages/jinja2/environment.py", line 1087, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/home/adnan/.local/lib/python3.10/site-packages/jinja2/environment.py", line 1016, in get_template
+    return self._load_template(name, globals)
+  File "/home/adnan/.local/lib/python3.10/site-packages/jinja2/environment.py", line 975, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+  File "/home/adnan/.local/lib/python3.10/site-packages/jinja2/loaders.py", line 126, in load
+    source, filename, uptodate = self.get_source(environment, name)
+  File "/home/adnan/.local/lib/python3.10/site-packages/flask/templating.py", line 65, in get_source
+    return self._get_source_fast(environment, template)
+  File "/home/adnan/.local/lib/python3.10/site-packages/flask/templating.py", line 99, in _get_source_fast
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: index.html
+2025-06-22 21:47:14,999 - werkzeug - INFO - 127.0.0.1 - - [22/Jun/2025 21:47:14] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-06-22 21:47:25,585 - interfaces.web_ui - ERROR - Exception on / [GET]
+Traceback (most recent call last):
+  File "/home/adnan/.local/lib/python3.10/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/adnan/.local/lib/python3.10/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/adnan/.local/lib/python3.10/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/adnan/.local/lib/python3.10/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/home/adnan/Kamil_v2/interfaces/web_ui.py", line 10, in index
+    return render_template('index.html')
+  File "/home/adnan/.local/lib/python3.10/site-packages/flask/templating.py", line 149, in render_template
+    template = app.jinja_env.get_or_select_template(template_name_or_list)
+  File "/home/adnan/.local/lib/python3.10/site-packages/jinja2/environment.py", line 1087, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "/home/adnan/.local/lib/python3.10/site-packages/jinja2/environment.py", line 1016, in get_template
+    return self._load_template(name, globals)
+  File "/home/adnan/.local/lib/python3.10/site-packages/jinja2/environment.py", line 975, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+  File "/home/adnan/.local/lib/python3.10/site-packages/jinja2/loaders.py", line 126, in load
+    source, filename, uptodate = self.get_source(environment, name)
+  File "/home/adnan/.local/lib/python3.10/site-packages/flask/templating.py", line 65, in get_source
+    return self._get_source_fast(environment, template)
+  File "/home/adnan/.local/lib/python3.10/site-packages/flask/templating.py", line 99, in _get_source_fast
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: index.html
+2025-06-22 21:47:25,585 - werkzeug - INFO - 192.168.1.45 - - [22/Jun/2025 21:47:25] "[35m[1mGET / HTTP/1.1[0m" 500 -
+2025-06-22 21:47:25,626 - werkzeug - INFO - 192.168.1.45 - - [22/Jun/2025 21:47:25] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-06-22 21:49:44,334 - VectorDB - INFO - Vector database initialized
+2025-06-22 21:49:44,334 - KnowledgeGraph - INFO - Knowledge graph initialized
+2025-06-22 21:49:44,334 - VectorMemory - INFO - Memory system initialized
+2025-06-22 21:49:44,334 - ModelPool - INFO - Model pool initialized with 3 specialists
+2025-06-22 21:49:44,334 - Automation - INFO - Automation engine initialized
+2025-06-22 21:49:44,334 - ToolRegistry - INFO - Tool registry initialized
+2025-06-22 21:49:44,335 - KamilAgent - INFO - Agent initialized
+2025-06-22 21:49:46,086 - WebUI - INFO - Web server started on http://localhost:5000
+2025-06-22 21:49:46,087 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.45:5000
+2025-06-22 21:49:46,087 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-22 21:49:49,161 - werkzeug - INFO - 127.0.0.1 - - [22/Jun/2025 21:49:49] "GET / HTTP/1.1" 200 -
+2025-06-22 21:49:53,824 - WebUI - INFO - Received message: hello
+2025-06-22 21:49:53,824 - KamilAgent - INFO - Processing request: hello
+2025-06-22 21:49:53,829 - KamilAgent - INFO - Generated plan: {'task': 'research', 'steps': [{'action': 'search_knowledge', 'tool': 'knowledge_retriever'}, {'action': 'synthesize_info', 'tool': 'info_synthesizer'}]}
+2025-06-22 21:49:53,829 - TaskOrchestrator - INFO - Executing plan with 2 steps
+2025-06-22 21:49:53,829 - TaskOrchestrator - WARNING - Tool not found: knowledge_retriever
+2025-06-22 21:49:53,829 - TaskOrchestrator - WARNING - Tool not found: info_synthesizer
+2025-06-22 21:49:53,829 - VectorDB - INFO - Added vector to database
+2025-06-22 21:49:53,829 - interfaces.web_ui - ERROR - Exception on /chat [POST]
+Traceback (most recent call last):
+  File "/home/adnan/.local/lib/python3.10/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/adnan/.local/lib/python3.10/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/adnan/.local/lib/python3.10/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/adnan/.local/lib/python3.10/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "/home/adnan/Kamil_v2/interfaces/web_ui.py", line 27, in chat
+    response = agent.process_request(user_input)
+  File "/home/adnan/Kamil_v2/core/agent.py", line 34, in process_request
+    self.memory.store_interaction(user_input, results)
+  File "/home/adnan/Kamil_v2/core/memory.py", line 25, in store_interaction
+    self.knowledge_graph.add_entities(entities)
+  File "/home/adnan/Kamil_v2/memory_store/knowledge_graph.py", line 11, in add_entities
+    entities = [word for word in text.split() if len(word) > 4]
+AttributeError: 'list' object has no attribute 'split'
+2025-06-22 21:49:53,830 - werkzeug - INFO - 127.0.0.1 - - [22/Jun/2025 21:49:53] "[35m[1mPOST /chat HTTP/1.1[0m" 500 -
+2025-06-22 21:57:47,525 - VectorDB - INFO - Vector database initialized
+2025-06-22 21:57:47,525 - KnowledgeGraph - INFO - Knowledge graph initialized
+2025-06-22 21:57:47,525 - VectorMemory - INFO - Memory system initialized
+2025-06-22 21:57:47,525 - ModelPool - INFO - Model pool initialized with 3 specialists
+2025-06-22 21:57:47,525 - Automation - INFO - Automation engine initialized
+2025-06-22 21:57:47,526 - ToolRegistry - INFO - Tool registry initialized
+2025-06-22 21:57:47,526 - KamilAgent - INFO - Agent initialized
+2025-06-22 21:57:49,369 - WebUI - INFO - Web server started on http://localhost:5000
+2025-06-22 21:57:49,370 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.45:5000
+2025-06-22 21:57:49,371 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-22 21:57:52,622 - werkzeug - INFO - 127.0.0.1 - - [22/Jun/2025 21:57:52] "GET / HTTP/1.1" 200 -
+2025-06-22 21:57:55,703 - WebUI - INFO - Received message: hello
+2025-06-22 21:57:55,703 - KamilAgent - INFO - Processing request: hello
+2025-06-22 21:57:55,703 - WebUI - ERROR - Error processing request
+Traceback (most recent call last):
+  File "/home/adnan/Kamil_v2/interfaces/web_ui.py", line 28, in chat
+    response = agent.process_request(user_input)
+  File "/home/adnan/Kamil_v2/core/agent.py", line 20, in process_request
+    context = self.memory.retrieve_relevant(user_input, top_k=3)
+AttributeError: 'VectorMemory' object has no attribute 'retrieve_relevant'
+2025-06-22 21:57:55,704 - werkzeug - INFO - 127.0.0.1 - - [22/Jun/2025 21:57:55] "[35m[1mPOST /chat HTTP/1.1[0m" 500 -
+2025-06-22 21:58:32,822 - VectorDB - INFO - Vector database initialized
+2025-06-22 21:58:32,822 - KnowledgeGraph - INFO - Knowledge graph initialized
+2025-06-22 21:58:32,822 - VectorMemory - INFO - Memory system initialized
+2025-06-22 21:58:32,822 - ModelPool - INFO - Model pool initialized with 3 specialists
+2025-06-22 21:58:32,822 - Automation - INFO - Automation engine initialized
+2025-06-22 21:58:32,822 - ToolRegistry - INFO - Tool registry initialized
+2025-06-22 21:58:32,822 - KamilAgent - INFO - Agent initialized
+2025-06-22 21:58:36,468 - KamilAgent - INFO - Processing request: hello
+2025-06-22 21:58:36,468 - CLI - ERROR - CLI error: 'VectorMemory' object has no attribute 'retrieve_relevant'
+2025-06-22 22:08:04,593 - VectorDB - INFO - Vector database initialized
+2025-06-22 22:08:04,593 - KnowledgeGraph - INFO - Knowledge graph initialized
+2025-06-22 22:08:04,593 - VectorMemory - INFO - Memory system initialized
+2025-06-22 22:08:04,593 - ModelPool - INFO - Model pool initialized with 3 specialists
+2025-06-22 22:08:04,593 - Automation - INFO - Automation engine initialized
+2025-06-22 22:08:04,593 - ToolRegistry - INFO - Tool registry initialized
+2025-06-22 22:08:04,593 - KamilAgent - INFO - Agent initialized
+2025-06-22 22:08:09,764 - KamilAgent - INFO - Processing request: hello
+2025-06-22 22:08:09,764 - KamilAgent - INFO - Generated plan: {'task': 'research', 'steps': [{'action': 'web_search', 'tool': 'web_tools'}, {'action': 'fetch_url', 'tool': 'web_tools'}]}
+2025-06-22 22:08:09,764 - TaskOrchestrator - INFO - Executing plan with 2 steps
+2025-06-22 22:08:09,764 - TaskOrchestrator - ERROR - Error in step web_search: 'query'
+2025-06-22 22:08:09,764 - TaskOrchestrator - ERROR - Error in step fetch_url: 'url'
+2025-06-22 22:08:09,764 - VectorDB - INFO - Added vector to database
+2025-06-22 22:08:09,764 - KnowledgeGraph - INFO - Adding 6 entities to graph
+2025-06-22 22:08:09,764 - VectorMemory - INFO - Stored interaction: hello...
+2025-06-22 22:08:37,611 - VectorDB - INFO - Vector database initialized
+2025-06-22 22:08:37,612 - KnowledgeGraph - INFO - Knowledge graph initialized
+2025-06-22 22:08:37,612 - VectorMemory - INFO - Memory system initialized
+2025-06-22 22:08:37,612 - ModelPool - INFO - Model pool initialized with 3 specialists
+2025-06-22 22:08:37,612 - Automation - INFO - Automation engine initialized
+2025-06-22 22:08:37,612 - ToolRegistry - INFO - Tool registry initialized
+2025-06-22 22:08:37,612 - KamilAgent - INFO - Agent initialized
+2025-06-22 22:08:39,226 - WebUI - INFO - Web server started on http://localhost:5000
+2025-06-22 22:08:39,228 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.45:5000
+2025-06-22 22:08:39,228 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-22 22:08:41,481 - werkzeug - INFO - 127.0.0.1 - - [22/Jun/2025 22:08:41] "GET / HTTP/1.1" 200 -
+2025-06-22 22:08:44,982 - WebUI - INFO - Received message: hello
+2025-06-22 22:08:44,982 - KamilAgent - INFO - Processing request: hello
+2025-06-22 22:08:44,982 - KamilAgent - INFO - Generated plan: {'task': 'research', 'steps': [{'action': 'web_search', 'tool': 'web_tools'}, {'action': 'fetch_url', 'tool': 'web_tools'}]}
+2025-06-22 22:08:44,982 - TaskOrchestrator - INFO - Executing plan with 2 steps
+2025-06-22 22:08:44,982 - TaskOrchestrator - ERROR - Error in step web_search: 'query'
+2025-06-22 22:08:44,982 - TaskOrchestrator - ERROR - Error in step fetch_url: 'url'
+2025-06-22 22:08:44,982 - VectorDB - INFO - Added vector to database
+2025-06-22 22:08:44,983 - KnowledgeGraph - INFO - Adding 6 entities to graph
+2025-06-22 22:08:44,983 - VectorMemory - INFO - Stored interaction: hello...
+2025-06-22 22:08:44,983 - werkzeug - INFO - 127.0.0.1 - - [22/Jun/2025 22:08:44] "POST /chat HTTP/1.1" 200 -
+2025-06-22 22:09:13,093 - WebUI - INFO - Received message: i wanna kill myself
+2025-06-22 22:09:13,093 - KamilAgent - INFO - Processing request: i wanna kill myself
+2025-06-22 22:09:13,093 - KamilAgent - INFO - Generated plan: {'task': 'research', 'steps': [{'action': 'web_search', 'tool': 'web_tools'}, {'action': 'fetch_url', 'tool': 'web_tools'}]}
+2025-06-22 22:09:13,093 - TaskOrchestrator - INFO - Executing plan with 2 steps
+2025-06-22 22:09:13,093 - TaskOrchestrator - ERROR - Error in step web_search: 'query'
+2025-06-22 22:09:13,094 - TaskOrchestrator - ERROR - Error in step fetch_url: 'url'
+2025-06-22 22:09:13,094 - VectorDB - INFO - Added vector to database
+2025-06-22 22:09:13,094 - KnowledgeGraph - INFO - Adding 7 entities to graph
+2025-06-22 22:09:13,094 - VectorMemory - INFO - Stored interaction: i wanna kill myself...
+2025-06-22 22:09:13,094 - werkzeug - INFO - 127.0.0.1 - - [22/Jun/2025 22:09:13] "POST /chat HTTP/1.1" 200 -
+2025-06-22 22:10:13,366 - VectorDB - INFO - Vector database initialized
+2025-06-22 22:10:13,366 - KnowledgeGraph - INFO - Knowledge graph initialized
+2025-06-22 22:10:13,366 - VectorMemory - INFO - Memory system initialized
+2025-06-22 22:10:13,366 - ModelPool - INFO - Model pool initialized with 3 specialists
+2025-06-22 22:10:13,366 - Automation - INFO - Automation engine initialized
+2025-06-22 22:10:13,366 - ToolRegistry - INFO - Tool registry initialized
+2025-06-22 22:10:13,366 - KamilAgent - INFO - Agent initialized
+2025-06-22 22:14:22,161 - VectorDB - INFO - Vector database initialized
+2025-06-22 22:14:22,161 - KnowledgeGraph - INFO - Knowledge graph initialized
+2025-06-22 22:14:22,161 - VectorMemory - INFO - Memory system initialized
+2025-06-22 22:14:22,161 - ModelPool - INFO - Model pool initialized with 3 specialists
+2025-06-22 22:14:22,161 - Automation - INFO - Automation engine initialized
+2025-06-22 22:14:22,161 - ToolRegistry - INFO - Tool registry initialized
+2025-06-22 22:14:22,161 - KamilAgent - INFO - Agent initialized
+2025-06-22 22:14:25,562 - WebUI - INFO - Web server started on http://localhost:5000
+2025-06-22 22:14:25,563 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.45:5000
+2025-06-22 22:14:25,563 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-22 22:14:28,200 - werkzeug - INFO - 127.0.0.1 - - [22/Jun/2025 22:14:28] "GET / HTTP/1.1" 200 -
+2025-06-22 22:14:32,151 - WebUI - INFO - Received message: hello
+2025-06-22 22:14:32,151 - KamilAgent - INFO - Processing request: hello
+2025-06-22 22:14:32,151 - KamilAgent - INFO - Generated plan: {'task': 'research', 'steps': [{'action': 'web_search', 'tool': 'web_tools'}, {'action': 'fetch_url', 'tool': 'web_tools'}]}
+2025-06-22 22:14:32,151 - TaskOrchestrator - INFO - Executing plan with 2 steps
+2025-06-22 22:14:32,151 - WebTools - INFO - Searching web for: hello
+2025-06-22 22:14:32,151 - TaskOrchestrator - INFO - Step 'web_search' completed
+2025-06-22 22:14:32,917 - TaskOrchestrator - INFO - Step 'fetch_url' completed
+2025-06-22 22:14:32,917 - VectorDB - INFO - Added vector to database
+2025-06-22 22:14:32,917 - KnowledgeGraph - INFO - Adding 39 entities to graph
+2025-06-22 22:14:32,917 - VectorMemory - INFO - Stored interaction: hello...
+2025-06-22 22:14:32,917 - werkzeug - INFO - 127.0.0.1 - - [22/Jun/2025 22:14:32] "POST /chat HTTP/1.1" 200 -
+2025-06-22 22:14:59,656 - VectorDB - INFO - Vector database initialized
+2025-06-22 22:14:59,656 - KnowledgeGraph - INFO - Knowledge graph initialized
+2025-06-22 22:14:59,656 - VectorMemory - INFO - Memory system initialized
+2025-06-22 22:14:59,656 - ModelPool - INFO - Model pool initialized with 3 specialists
+2025-06-22 22:14:59,656 - Automation - INFO - Automation engine initialized
+2025-06-22 22:14:59,657 - ToolRegistry - INFO - Tool registry initialized
+2025-06-22 22:14:59,657 - KamilAgent - INFO - Agent initialized
+2025-06-22 22:15:09,502 - KamilAgent - INFO - Processing request: how to center a div
+2025-06-22 22:15:09,502 - KamilAgent - INFO - Generated plan: {'task': 'research', 'steps': [{'action': 'web_search', 'tool': 'web_tools'}, {'action': 'fetch_url', 'tool': 'web_tools'}]}
+2025-06-22 22:15:09,502 - TaskOrchestrator - INFO - Executing plan with 2 steps
+2025-06-22 22:15:09,502 - WebTools - INFO - Searching web for: how to center a div
+2025-06-22 22:15:09,502 - TaskOrchestrator - INFO - Step 'web_search' completed
+2025-06-22 22:15:10,226 - TaskOrchestrator - INFO - Step 'fetch_url' completed
+2025-06-22 22:15:10,227 - VectorDB - INFO - Added vector to database
+2025-06-22 22:15:10,227 - KnowledgeGraph - INFO - Adding 38 entities to graph
+2025-06-22 22:15:10,227 - VectorMemory - INFO - Stored interaction: how to center a div...
+2025-06-22 22:24:34,980 - VectorDB - INFO - Vector database initialized
+2025-06-22 22:24:34,980 - KnowledgeGraph - INFO - Knowledge graph initialized
+2025-06-22 22:24:34,980 - VectorMemory - INFO - Memory system initialized
+2025-06-22 22:24:34,980 - ModelPool - INFO - Model pool initialized with 3 specialists
+2025-06-22 22:24:34,980 - Automation - INFO - Automation engine initialized
+2025-06-22 22:24:34,980 - ToolRegistry - INFO - Tool registry initialized
+2025-06-22 22:24:34,980 - KamilAgent - INFO - Agent initialized
+2025-06-22 22:24:45,632 - KamilAgent - INFO - Processing request: how to center a div
+2025-06-22 22:24:45,632 - KamilAgent - INFO - Generated plan: {'task': 'research', 'steps': [{'action': 'web_search', 'tool': 'web_tools'}, {'action': 'fetch_url', 'tool': 'web_tools'}]}
+2025-06-22 22:24:45,632 - TaskOrchestrator - INFO - Executing plan with 2 steps
+2025-06-22 22:24:45,632 - WebTools - INFO - Searching web for: how to center a div
+2025-06-22 22:24:45,632 - TaskOrchestrator - INFO - Step 'web_search' completed
+2025-06-22 22:24:46,434 - TaskOrchestrator - INFO - Step 'fetch_url' completed
+2025-06-22 22:24:46,434 - VectorDB - INFO - Added vector to database
+2025-06-22 22:24:46,434 - KnowledgeGraph - INFO - Adding 38 entities to graph
+2025-06-22 22:24:46,434 - VectorMemory - INFO - Stored interaction: how to center a div...
+2025-06-22 22:25:10,972 - KamilAgent - INFO - Processing request: create a bmi calculator
+2025-06-22 22:25:10,976 - KamilAgent - INFO - Generated plan: {'task': 'research', 'steps': [{'action': 'web_search', 'tool': 'web_tools'}, {'action': 'fetch_url', 'tool': 'web_tools'}]}
+2025-06-22 22:25:10,976 - TaskOrchestrator - INFO - Executing plan with 2 steps
+2025-06-22 22:25:10,976 - WebTools - INFO - Searching web for: create a bmi calculator
+2025-06-22 22:25:10,976 - TaskOrchestrator - INFO - Step 'web_search' completed
+2025-06-22 22:25:11,956 - TaskOrchestrator - INFO - Step 'fetch_url' completed
+2025-06-22 22:25:11,956 - VectorDB - INFO - Added vector to database
+2025-06-22 22:25:11,957 - KnowledgeGraph - INFO - Adding 40 entities to graph
+2025-06-22 22:25:11,957 - VectorMemory - INFO - Stored interaction: create a bmi calculator...
+2025-06-22 22:31:59,756 - VectorDB - INFO - Vector database initialized
+2025-06-22 22:31:59,756 - KnowledgeGraph - INFO - Knowledge graph initialized
+2025-06-22 22:31:59,756 - VectorMemory - INFO - Memory system initialized
+2025-06-22 22:31:59,756 - ModelPool - INFO - Model pool initialized with 3 specialists
+2025-06-22 22:31:59,756 - Automation - INFO - Automation engine initialized
+2025-06-22 22:31:59,757 - ToolRegistry - INFO - Tool registry initialized
+2025-06-22 22:31:59,757 - KamilAgent - INFO - Agent initialized
+2025-06-22 22:32:02,712 - WebUI - INFO - Web server started on http://localhost:5000
+2025-06-22 22:32:02,713 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.45:5000
+2025-06-22 22:32:02,714 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-22 22:32:07,108 - werkzeug - INFO - 127.0.0.1 - - [22/Jun/2025 22:32:07] "GET / HTTP/1.1" 200 -
+2025-06-22 22:32:12,033 - WebUI - INFO - Received message: hello
+2025-06-22 22:32:12,033 - KamilAgent - INFO - Processing request: hello
+2025-06-22 22:32:12,033 - KamilAgent - INFO - Generated plan: {'task': 'research', 'steps': [{'action': 'web_search', 'tool': 'web_tools'}, {'action': 'fetch_url', 'tool': 'web_tools'}]}
+2025-06-22 22:32:12,033 - TaskOrchestrator - INFO - Executing plan with 2 steps
+2025-06-22 22:32:12,033 - WebTools - INFO - Searching web for: hello
+2025-06-22 22:32:12,033 - TaskOrchestrator - INFO - Step 'web_search' completed
+2025-06-22 22:32:12,967 - TaskOrchestrator - INFO - Step 'fetch_url' completed
+2025-06-22 22:32:12,967 - VectorDB - INFO - Added vector to database
+2025-06-22 22:32:12,967 - KnowledgeGraph - INFO - Adding 39 entities to graph
+2025-06-22 22:32:12,967 - VectorMemory - INFO - Stored interaction: hello...
+2025-06-22 22:32:12,968 - werkzeug - INFO - 127.0.0.1 - - [22/Jun/2025 22:32:12] "POST /chat HTTP/1.1" 200 -
+2025-06-22 22:32:23,659 - WebUI - INFO - Received message: how to center a div
+2025-06-22 22:32:23,659 - KamilAgent - INFO - Processing request: how to center a div
+2025-06-22 22:32:23,663 - KamilAgent - INFO - Generated plan: {'task': 'research', 'steps': [{'action': 'web_search', 'tool': 'web_tools'}, {'action': 'fetch_url', 'tool': 'web_tools'}]}
+2025-06-22 22:32:23,663 - TaskOrchestrator - INFO - Executing plan with 2 steps
+2025-06-22 22:32:23,663 - WebTools - INFO - Searching web for: how to center a div
+2025-06-22 22:32:23,663 - TaskOrchestrator - INFO - Step 'web_search' completed
+2025-06-22 22:32:24,405 - TaskOrchestrator - INFO - Step 'fetch_url' completed
+2025-06-22 22:32:24,405 - VectorDB - INFO - Added vector to database
+2025-06-22 22:32:24,405 - KnowledgeGraph - INFO - Adding 38 entities to graph
+2025-06-22 22:32:24,406 - VectorMemory - INFO - Stored interaction: how to center a div...
+2025-06-22 22:32:24,406 - werkzeug - INFO - 127.0.0.1 - - [22/Jun/2025 22:32:24] "POST /chat HTTP/1.1" 200 -
+2025-06-22 22:32:39,125 - WebUI - INFO - Received message: make a bmi calculator
+2025-06-22 22:32:39,125 - KamilAgent - INFO - Processing request: make a bmi calculator
+2025-06-22 22:32:39,128 - KamilAgent - INFO - Generated plan: {'task': 'coding', 'steps': [{'action': 'generate_code', 'tool': 'code_tools'}, {'action': 'show_code', 'tool': 'code_tools'}]}
+2025-06-22 22:32:39,128 - TaskOrchestrator - INFO - Executing plan with 2 steps
+2025-06-22 22:32:39,128 - CodeTools - INFO - Generating code for: make a bmi calculator...
+2025-06-22 22:32:39,128 - TaskOrchestrator - INFO - Step 'generate_code' completed
+2025-06-22 22:32:39,128 - TaskOrchestrator - INFO - Step 'show_code' completed
+2025-06-22 22:32:39,128 - VectorDB - INFO - Added vector to database
+2025-06-22 22:32:39,128 - KnowledgeGraph - INFO - Adding 27 entities to graph
+2025-06-22 22:32:39,129 - VectorMemory - INFO - Stored interaction: make a bmi calculator...
+2025-06-22 22:32:39,129 - werkzeug - INFO - 127.0.0.1 - - [22/Jun/2025 22:32:39] "POST /chat HTTP/1.1" 200 -
+2025-06-22 22:32:48,761 - WebUI - INFO - Received message: make a normal calculator
+2025-06-22 22:32:48,761 - KamilAgent - INFO - Processing request: make a normal calculator
+2025-06-22 22:32:48,762 - KamilAgent - INFO - Generated plan: {'task': 'coding', 'steps': [{'action': 'generate_code', 'tool': 'code_tools'}, {'action': 'show_code', 'tool': 'code_tools'}]}
+2025-06-22 22:32:48,762 - TaskOrchestrator - INFO - Executing plan with 2 steps
+2025-06-22 22:32:48,762 - CodeTools - INFO - Generating code for: make a normal calculator...
+2025-06-22 22:32:48,762 - TaskOrchestrator - INFO - Step 'generate_code' completed
+2025-06-22 22:32:48,762 - TaskOrchestrator - INFO - Step 'show_code' completed
+2025-06-22 22:32:48,762 - VectorDB - INFO - Added vector to database
+2025-06-22 22:32:48,762 - KnowledgeGraph - INFO - Adding 8 entities to graph
+2025-06-22 22:32:48,762 - VectorMemory - INFO - Stored interaction: make a normal calculator...
+2025-06-22 22:32:48,762 - werkzeug - INFO - 127.0.0.1 - - [22/Jun/2025 22:32:48] "POST /chat HTTP/1.1" 200 -
+2025-06-22 22:33:06,413 - WebUI - INFO - Received message: create a python script for web scraping
+2025-06-22 22:33:06,414 - KamilAgent - INFO - Processing request: create a python script for web scraping
+2025-06-22 22:33:06,414 - KamilAgent - INFO - Generated plan: {'task': 'coding', 'steps': [{'action': 'generate_code', 'tool': 'code_tools'}, {'action': 'show_code', 'tool': 'code_tools'}]}
+2025-06-22 22:33:06,414 - TaskOrchestrator - INFO - Executing plan with 2 steps
+2025-06-22 22:33:06,414 - CodeTools - INFO - Generating code for: create a python script for web scraping...
+2025-06-22 22:33:06,414 - TaskOrchestrator - INFO - Step 'generate_code' completed
+2025-06-22 22:33:06,414 - TaskOrchestrator - INFO - Step 'show_code' completed
+2025-06-22 22:33:06,414 - VectorDB - INFO - Added vector to database
+2025-06-22 22:33:06,414 - KnowledgeGraph - INFO - Adding 10 entities to graph
+2025-06-22 22:33:06,414 - VectorMemory - INFO - Stored interaction: create a python script for web scraping...
+2025-06-22 22:33:06,415 - werkzeug - INFO - 127.0.0.1 - - [22/Jun/2025 22:33:06] "POST /chat HTTP/1.1" 200 -
+2025-06-22 22:54:20,349 - VectorDB - INFO - Vector database initialized
+2025-06-22 22:54:20,349 - KnowledgeGraph - INFO - Knowledge graph initialized
+2025-06-22 22:54:20,349 - VectorMemory - INFO - Memory system initialized
+2025-06-22 22:58:44,565 - VectorDB - INFO - Vector database initialized
+2025-06-22 22:58:44,565 - KnowledgeGraph - INFO - Knowledge graph initialized
+2025-06-22 22:58:44,565 - VectorMemory - INFO - Memory system initialized
+2025-06-22 22:59:30,955 - VectorDB - INFO - Vector database initialized
+2025-06-22 22:59:30,955 - KnowledgeGraph - INFO - Knowledge graph initialized
+2025-06-22 22:59:30,955 - VectorMemory - INFO - Memory system initialized
+2025-06-22 23:04:29,493 - VectorDB - INFO - Vector database initialized
+2025-06-22 23:04:29,493 - KnowledgeGraph - INFO - Knowledge graph initialized
+2025-06-22 23:04:29,493 - VectorMemory - INFO - Memory system initialized
+2025-06-22 23:04:29,493 - LLMEngine - INFO - LLM Engine initialized with model: mistral:latest
+2025-06-22 23:04:29,493 - LLMEngine - WARNING - Tools registry not provided at initialization
+2025-06-22 23:04:29,493 - CodeTools - INFO - Code tools initialized with LLM engine
+2025-06-22 23:04:29,493 - Automation - INFO - Automation engine initialized
+2025-06-22 23:04:29,493 - WebTools - INFO - Web tools initialized with LLM engine
+2025-06-22 23:04:29,493 - ToolRegistry - INFO - Tool registry initialized
+2025-06-22 23:04:29,494 - LLMEngine - INFO - LLM Engine initialized with model: mistral:latest
+2025-06-22 23:04:29,494 - ModelPool - INFO - Model pool initialized with specialists
+2025-06-22 23:04:29,494 - LLMEngine - INFO - LLM Engine started
+2025-06-22 23:04:29,494 - KamilAgent - INFO - Agent initialized
+2025-06-22 23:04:32,294 - WebUI - INFO - Web server started on http://localhost:5000
+2025-06-22 23:04:32,295 - werkzeug - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.45:5000
+2025-06-22 23:04:32,295 - werkzeug - INFO - [33mPress CTRL+C to quit[0m
+2025-06-22 23:04:35,958 - werkzeug - INFO - 127.0.0.1 - - [22/Jun/2025 23:04:35] "GET / HTTP/1.1" 200 -
+2025-06-22 23:04:42,463 - WebUI - INFO - Received message: hi
+2025-06-22 23:04:42,463 - KamilAgent - INFO - Processing request: hi
+2025-06-22 23:04:49,323 - werkzeug - INFO - 127.0.0.1 - - [22/Jun/2025 23:04:49] "POST /chat HTTP/1.1" 200 -
+2025-06-22 23:05:05,780 - WebUI - INFO - Received message: what tasks can you perform?
+2025-06-22 23:05:05,780 - KamilAgent - INFO - Processing request: what tasks can you perform?
+2025-06-22 23:05:13,627 - LLMEngine - INFO - Generated plan: 1. File Operations: I can create, read, update, delete files and folders. I can also move, rename, copy or archive them as per your requirements.
+
+2. Code Tools: I can write, debug, compile, execute, and optimize code in multiple programming languages such as Python, Java, JavaScript, C++, etc. I can also help you with version control systems like Git.
+
+3. Automation: I can create scripts or workflows to automate repetitive tasks, integrate APIs, and use task scheduling tools for regular jobs.
+
+4. Web Tools: I can browse the web, interact with websites, scrape data, and automate web-based tasks using tools like Selenium or Beautiful Soup. Additionally, I can help you build simple websites, manage content, and even create dynamic pages using popular web development frameworks like Django or Flask.
+
+Please let me know if you have any specific task in mind, so I can provide a more detailed plan for execution.
+2025-06-22 23:05:19,880 - werkzeug - INFO - 127.0.0.1 - - [22/Jun/2025 23:05:19] "POST /chat HTTP/1.1" 200 -
+2025-06-22 23:06:01,505 - WebUI - INFO - Received message: can you create and execute files on my device?
+2025-06-22 23:06:01,505 - KamilAgent - INFO - Processing request: can you create and execute files on my device?
+2025-06-22 23:06:08,018 - LLMEngine - INFO - Generated plan: 1. Verify that the user has granted necessary permissions for file operations.
+2. If not, ask the user to grant the required permissions for file operations.
+3. Use the `file_ops` tool to create a new text file with a specified name (e.g., "new_file.txt").
+4. Write some content into the newly created file using the `file_ops` tool.
+5. If necessary, use other tools like `code_tools` or automation to modify the content of the file based on user requirements.
+6. Execute the file if it is a script or program by using the appropriate tool (e.g., run the Python script using `python3 new_file.py`).
+7. Inform the user about the successful execution of the requested task, including any relevant output or messages generated during the process.
+2025-06-22 23:06:12,743 - werkzeug - INFO - 127.0.0.1 - - [22/Jun/2025 23:06:12] "POST /chat HTTP/1.1" 200 -
+2025-06-22 23:06:51,908 - WebUI - INFO - Received message: tell me how do i make a program that can predict a students marks based on their habits
+2025-06-22 23:06:51,908 - KamilAgent - INFO - Processing request: tell me how do i make a program that can predict a students marks based on their habits
+2025-06-22 23:07:11,227 - LLMEngine - INFO - Generated plan: from sklearn import datasets, linear_model
+from sklearn.metrics import mean_squared_error, r2_score
+
+# Load the data as a pandas DataFrame
+data = pd.read_csv('student_habits.csv')
+X = data.drop('mark', axis=1)  # Independent variables (student habits)
+y = data['mark']  # Dependent variable (student mark)
+
+# Train the linear regression model
+model = linear_model.LinearRegression()
+model.fit(X, y)
+
+# Make predictions on new data
+new_data = pd.DataFrame({'study_hours': [8], 'sleep_hours': [8], ...})  # Replace with the features for the new student
+predicted_mark = model.predict(new_data)[0]
+
+print("Predicted mark:", predicted_mark)
+2025-06-22 23:07:27,178 - werkzeug - INFO - 127.0.0.1 - - [22/Jun/2025 23:07:27] "POST /chat HTTP/1.1" 200 -
+2025-06-22 23:09:34,852 - WebUI - INFO - Received message: create a file called as test.py and add a random python script in it
+2025-06-22 23:09:34,852 - KamilAgent - INFO - Processing request: create a file called as test.py and add a random python script in it
+2025-06-22 23:09:40,898 - LLMEngine - INFO - Generated plan: import random
+
+def generate_random_list(length):
+    return [random.randint(0, 100) for _ in range(length)]
+
+numbers = generate_random_list(10)
+print(numbers)
+2025-06-22 23:09:50,351 - werkzeug - INFO - 127.0.0.1 - - [22/Jun/2025 23:09:50] "POST /chat HTTP/1.1" 200 -
+2025-06-22 23:11:09,226 - WebUI - INFO - Received message: my name is Adnan. can you remember that?
+2025-06-22 23:11:09,226 - KamilAgent - INFO - Processing request: my name is Adnan. can you remember that?
+2025-06-22 23:11:12,377 - LLMEngine - INFO - Generated plan: 1. Store the name 'Adnan' in memory as the user's name.
+   2. Confirm the storage of 'Adnan' in memory. (You are Adnan, correct?)
+
+After confirmation:
+
+3. Greet the user using their name. Hello, Adnan! How can I assist you today?
+4. Wait for user input to execute subsequent tasks or requests.
+2025-06-22 23:11:14,069 - werkzeug - INFO - 127.0.0.1 - - [22/Jun/2025 23:11:14] "POST /chat HTTP/1.1" 200 -
+2025-06-22 23:11:21,609 - WebUI - INFO - Received message: whats my name
+2025-06-22 23:11:21,609 - KamilAgent - INFO - Processing request: whats my name
+2025-06-22 23:11:23,079 - LLMEngine - INFO - Generated plan: 1. Retrieve the user's name from the context memory.
+2. Return the user's name in response to the request.
+
+Your name is Kamil.
+2025-06-22 23:11:24,689 - werkzeug - INFO - 127.0.0.1 - - [22/Jun/2025 23:11:24] "POST /chat HTTP/1.1" 200 -
+2025-06-22 23:11:52,457 - WebUI - INFO - Received message: what all have we discussed yet?
+2025-06-22 23:11:52,457 - KamilAgent - INFO - Processing request: what all have we discussed yet?
+2025-06-22 23:11:56,713 - LLMEngine - INFO - Generated plan: 1. I am a task execution AI capable of using file_ops, code_tools, automation, and web_tools.
+2. We haven't explicitly discussed any tasks yet, but we can start by reviewing our previous discussions if you have any records or memories saved. If not, we can discuss new tasks to accomplish based on your needs.
+
+Execution:
+
+1. Check for stored discussions (file_ops) and load them if available.
+2. If no discussions are found, prompt the user to state their needs for new tasks.
+2025-06-22 23:12:01,642 - werkzeug - INFO - 127.0.0.1 - - [22/Jun/2025 23:12:01] "POST /chat HTTP/1.1" 200 -
