@@ -13,6 +13,7 @@ class LLMEngine:
         self.tools = tools
         self.logger = logging.getLogger("LLMEngine")
         self.model_name = MODEL_NAME
+        self.fast_model = "mistral:7b-instruct"  # Faster model for simple queries
         self.timeout = TIMEOUT_SECONDS
         self.response_queue = Queue()
         self.is_running = False
@@ -31,23 +32,42 @@ class LLMEngine:
         self.logger.info("LLM Engine stopped")
 
     def generate(self, prompt, context=None, max_tokens=1024):
-        """Generate response from LLM"""
+        """Generate response from LLM with optimizations"""
         full_prompt = self._build_prompt(prompt, context)
         self.logger.debug(f"Sending prompt: {full_prompt[:100]}...")
         
+        # Optimize model selection
+        model_to_use = self._select_model(full_prompt)
+        
+        # Truncate very long prompts
+        if len(full_prompt) > 4000:
+            full_prompt = full_prompt[:2000] + " [...] " + full_prompt[-2000:]
+            self.logger.info("Truncated long prompt")
+        
         try:
             result = subprocess.run(
-                ["ollama", "run", self.model_name, full_prompt],
+                ["ollama", "run", model_to_use, full_prompt],
                 capture_output=True,
                 text=True,
-                timeout=self.timeout
+                timeout=15 if model_to_use == self.fast_model else self.timeout
             )
             output = clean_code(result.stdout.strip())
             self.logger.debug(f"Received response: {output[:100]}...")
             return output
+        except subprocess.TimeoutExpired:
+            self.logger.warning("LLM generation timed out")
+            return "I need more time to think about that. Could you clarify?"
         except Exception as e:
             self.logger.error(f"LLM generation error: {str(e)}")
             return "I encountered an error processing your request."
+
+    def _select_model(self, prompt):
+        """Choose the appropriate model based on prompt complexity"""
+        # Use fast model for short, simple prompts
+        if len(prompt) < 150 and "?" not in prompt:
+            self.logger.info("Using fast model for simple query")
+            return self.fast_model
+        return self.model_name
 
     def chat(self, user_input, history=None):
         """Generate conversational response"""

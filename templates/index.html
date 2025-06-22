@@ -3,108 +3,171 @@
 <head>
     <title>Kamil Web Interface</title>
     <style>
-        /* ... existing styles ... */
-        
-        /* File browser styles */
-        .file-browser {
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            padding: 10px;
-            margin-bottom: 15px;
-            max-height: 200px;
-            overflow-y: auto;
-        }
-        
-        .file-item {
-            padding: 5px;
-            cursor: pointer;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .file-item:hover {
-            background-color: #f0f8ff;
-        }
-        
-        .file-item.directory {
-            font-weight: bold;
-        }
-        
-        .file-actions {
-            display: flex;
-            gap: 10px;
-            margin-top: 10px;
-        }
-        
-        .file-modal {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: auto;
             padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.2);
-            z-index: 1000;
-            width: 80%;
-            max-width: 600px;
-            max-height: 80vh;
-            overflow: auto;
+            background: #f5f7fa;
         }
-        
-        .editor-container {
-            width: 100%;
-            height: 300px;
-            border: 1px solid #ddd;
+        #chat-box {
+            height: 400px;
+            border: 1px solid #ccc;
+            padding: 15px;
+            overflow-y: auto;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            background: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .user-msg {
+            text-align: right;
+            color: #0066cc;
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #e6f2ff;
+            border-radius: 10px;
+            max-width: 80%;
+            margin-left: auto;
+        }
+        .kamil-msg {
+            text-align: left;
+            color: #009933;
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #e6ffe6;
+            border-radius: 10px;
+            max-width: 80%;
+        }
+        .system-msg {
+            text-align: center;
+            color: #666;
+            margin: 10px 0;
+            padding: 10px;
+            font-style: italic;
+            background-color: #f0f0f0;
+            border-radius: 10px;
+        }
+        .code-block {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 5px;
+            font-family: 'Fira Code', monospace;
+            overflow-x: auto;
+            white-space: pre-wrap;
             margin: 10px 0;
         }
-        
-        #editor {
-            width: 100%;
-            height: 100%;
-            font-family: 'Fira Code', monospace;
+        #user-input {
+            width: calc(100% - 100px);
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            font-size: 16px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        #send-btn {
+            width: 80px;
+            padding: 12px;
+            background: linear-gradient(to right, #4e54c8, #8f94fb);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        #send-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        #send-btn:disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        .typing-indicator {
+            display: none;
+            padding: 10px;
+            background: #f0f0f0;
+            border-radius: 5px;
+            margin: 10px 0;
+            font-style: italic;
+            color: #666;
+            text-align: center;
+        }
+        .status-indicator {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            padding: 5px 10px;
+            background: #4CAF50;
+            color: white;
+            border-radius: 15px;
+            font-size: 12px;
+            z-index: 1000;
         }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.js"></script>
 </head>
 <body>
-    <div class="header">
-        <h1>Kamil AI Assistant</h1>
-        <p>Advanced conversational AI with file management</p>
-    </div>
-    
-    <div class="file-browser" id="file-browser">
-        <h3>Workspace Files <button onclick="refreshFileList()">Refresh</button></h3>
-        <div id="file-list">Loading files...</div>
+    <div style="text-align: center; margin-bottom: 20px;">
+        <h1 style="color: #4e54c8;">Kamil AI Assistant</h1>
+        <p style="color: #666;">Your personal AI assistant for coding, research, and automation</p>
     </div>
     
     <div id="chat-box">
-        <div class="message system-message">
-            Welcome to Kamil! I'm your AI assistant. How can I help you today?
-        </div>
+        <div class="system-msg">Welcome to Kamil! Type your message below to get started.</div>
     </div>
     
     <div class="typing-indicator" id="typing-indicator">
-        Kamil is thinking...
+        <div class="dot-flashing"></div> Kamil is thinking...
+        <style>
+            .dot-flashing {
+                position: relative;
+                display: inline-block;
+                width: 10px;
+                height: 10px;
+                border-radius: 5px;
+                background-color: #4e54c8;
+                color: #4e54c8;
+                animation: dotFlashing 1s infinite linear alternate;
+                animation-delay: .5s;
+                margin-right: 5px;
+            }
+            .dot-flashing::before, .dot-flashing::after {
+                content: '';
+                display: inline-block;
+                position: absolute;
+                top: 0;
+                width: 10px;
+                height: 10px;
+                border-radius: 5px;
+                background-color: #4e54c8;
+                color: #4e54c8;
+            }
+            .dot-flashing::before {
+                left: -15px;
+                animation: dotFlashing 1s infinite alternate;
+                animation-delay: 0s;
+            }
+            .dot-flashing::after {
+                left: 15px;
+                animation: dotFlashing 1s infinite alternate;
+                animation-delay: 1s;
+            }
+            @keyframes dotFlashing {
+                0% { background-color: #4e54c8; }
+                50%, 100% { background-color: #d0d0ff; }
+            }
+        </style>
     </div>
     
-    <div class="input-container">
-        <input type="text" id="user-input" placeholder="Type your message or file command..." autocomplete="off">
+    <div style="display: flex; gap: 10px;">
+        <input type="text" id="user-input" placeholder="Type your message or request...">
         <button id="send-btn" onclick="sendMessage()">Send</button>
-    </div>
-    
-    <div class="file-modal" id="file-modal">
-        <h3 id="modal-title">File Editor</h3>
-        <div class="editor-container">
-            <div id="editor"></div>
-        </div>
-        <div class="file-actions">
-            <button id="save-btn" onclick="saveFile()">Save</button>
-            <button onclick="executeFile()">Execute</button>
-            <button onclick="closeModal()">Close</button>
-        </div>
-        <div id="file-result" style="margin-top: 10px;"></div>
     </div>
 
     <script>
@@ -113,143 +176,111 @@
         const userInput = document.getElementById('user-input');
         const sendBtn = document.getElementById('send-btn');
         const typingIndicator = document.getElementById('typing-indicator');
-        const fileList = document.getElementById('file-list');
-        const fileModal = document.getElementById('file-modal');
-        const editor = ace.edit("editor");
-        const saveBtn = document.getElementById('save-btn');
-        const modalTitle = document.getElementById('modal-title');
-        const fileResult = document.getElementById('file-result');
         
-        // Initialize ACE editor
-        editor.setTheme("ace/theme/monokai");
-        editor.session.setMode("ace/mode/python");
-        editor.setFontSize(14);
+        // Add message to chat
+        function appendMessage(sender, text, isCode = false) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `${sender}-msg`;
+            
+            if (isCode) {
+                const codeBlock = document.createElement('pre');
+                codeBlock.className = 'code-block';
+                codeBlock.textContent = text;
+                messageDiv.appendChild(codeBlock);
+            } else {
+                messageDiv.innerHTML = `<strong>${sender}:</strong> ${text}`;
+            }
+            
+            chatBox.appendChild(messageDiv);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        // Show typing indicator
+        function showTyping() {
+            typingIndicator.style.display = 'block';
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        // Hide typing indicator
+        function hideTyping() {
+            typingIndicator.style.display = 'none';
+        }
+
+        // Update status indicator
+        function updateStatus(message) {
+            let status = document.getElementById('status-indicator');
+            if (!status) {
+                status = document.createElement('div');
+                status.id = 'status-indicator';
+                status.className = 'status-indicator';
+                document.body.appendChild(status);
+            }
+            status.textContent = message;
+        }
+
+        // Send message to server
+        async function sendMessage() {
+            const message = userInput.value.trim();
+            if (!message) return;
+            
+            // Add user message and clear input
+            appendMessage('user', message);
+            userInput.value = '';
+            userInput.disabled = true;
+            sendBtn.disabled = true;
+            showTyping();
+            updateStatus('Processing...');
+            
+            try {
+                const response = await fetch('/chat', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message })
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                if (data.crisis) {
+                    appendMessage('kamil', data.response);
+                    const resourcesDiv = document.createElement('div');
+                    resourcesDiv.className = 'system-msg';
+                    resourcesDiv.innerHTML = `<strong>Crisis Resources:</strong><br>${data.resources.join('<br>')}`;
+                    chatBox.appendChild(resourcesDiv);
+                } else if (data.response.includes('```python')) {
+                    // Extract and format code blocks
+                    const code = data.response.replace('```python', '').replace('```', '').trim();
+                    appendMessage('kamil', code, true);
+                } else {
+                    appendMessage('kamil', data.response);
+                }
+            } catch (error) {
+                appendMessage('system', `Error: ${error.message}`);
+            } finally {
+                hideTyping();
+                userInput.disabled = false;
+                sendBtn.disabled = false;
+                userInput.focus();
+                updateStatus('Online');
+            }
+        }
         
-        let currentFile = null;
-        let editorMode = 'create'; // 'create' or 'edit'
+        // Event listeners
+        userInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendMessage();
+        });
         
         // Focus input on load
         userInput.focus();
+        updateStatus('Online');
         
-        // File browser functions
-        function refreshFileList() {
-            fetch('/file_operation', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ operation: 'list' })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.result && Array.isArray(data.result)) {
-                    renderFileList(data.result);
-                } else {
-                    fileList.innerHTML = "Error loading files";
-                }
-            });
-        }
-        
-        function renderFileList(files) {
-            let html = '';
-            files.forEach(file => {
-                const fileType = file.type === 'directory' ? '📁' : '📄';
-                const fileClass = file.type === 'directory' ? 'directory' : '';
-                html += `<div class="file-item ${fileClass}" onclick="handleFileClick('${file.name}', '${file.type}')">
-                    ${fileType} ${file.name}
-                </div>`;
-            });
-            fileList.innerHTML = html || "No files found";
-        }
-        
-        function handleFileClick(filename, type) {
-            if (type === 'directory') return;
-            
-            fetch('/file_operation', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ 
-                    operation: 'read', 
-                    filename: filename 
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.result) {
-                    currentFile = filename;
-                    modalTitle.textContent = `Editing: ${filename}`;
-                    editor.setValue(data.result);
-                    editorMode = 'edit';
-                    fileModal.style.display = 'block';
-                } else {
-                    alert('Error reading file');
-                }
-            });
-        }
-        
-        function openFileCreator() {
-            currentFile = null;
-            modalTitle.textContent = "Create New File";
-            editor.setValue("");
-            editorMode = 'create';
-            fileModal.style.display = 'block';
-        }
-        
-        function closeModal() {
-            fileModal.style.display = 'none';
-            fileResult.innerHTML = '';
-        }
-        
-        function saveFile() {
-            const content = editor.getValue();
-            
-            if (!currentFile && editorMode === 'create') {
-                const filename = prompt("Enter filename:");
-                if (!filename) return;
-                currentFile = filename;
-            }
-            
-            const operation = editorMode === 'create' ? 'create' : 'modify';
-            
-            fetch('/file_operation', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ 
-                    operation: operation, 
-                    filename: currentFile, 
-                    content: content 
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                fileResult.innerHTML = `<div class="system-message">${data.result}</div>`;
-                refreshFileList();
-            });
-        }
-        
-        function executeFile() {
-            if (!currentFile) {
-                fileResult.innerHTML = '<div class="system-message">No file selected</div>';
-                return;
-            }
-            
-            fetch('/file_operation', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ 
-                    operation: 'execute', 
-                    filename: currentFile 
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                fileResult.innerHTML = `<div class="system-message">Execution Result:</div>
-                <pre class="code-block">${data.result}</pre>`;
-            });
-        }
-        
-        // ... existing message functions ...
-        
-        // Initialize file browser
-        refreshFileList();
+        // Initial welcome message
+        setTimeout(() => {
+            appendMessage('kamil', "Hello! I'm Kamil, your AI assistant. How can I help you today?");
+        }, 1000);
     </script>
 </body>
 </html>
