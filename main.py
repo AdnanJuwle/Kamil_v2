@@ -1,8 +1,9 @@
 import logging
+import sys
+import time
 from core.agent import KamilAgent
 from interfaces.voice_interface import VoiceInterface
 from interfaces.cli import CommandLineInterface
-import time
 
 def configure_logging():
     logging.basicConfig(
@@ -25,7 +26,26 @@ def main():
     """)
     
     configure_logging()
-    agent = KamilAgent()
+    
+    # Check for distributed mode
+    mode = sys.argv[1] if len(sys.argv) > 1 else "monolithic"
+    
+    if mode == "distributed":
+        # Distributed mode - connect to orchestrator
+        orchestrator_addr = sys.argv[2] if len(sys.argv) > 2 else "localhost:8000"
+        print(f"Distributed mode - connecting to orchestrator at {orchestrator_addr}")
+        try:
+            from distributed.distributed_agent import DistributedAgent
+            agent = DistributedAgent(orchestrator_address=orchestrator_addr)
+        except Exception as e:
+            print(f"Error connecting to orchestrator: {e}")
+            print("Make sure the orchestrator is running:")
+            print("  python distributed/run_orchestrator.py")
+            return
+    else:
+        # Monolithic mode (default)
+        print("Monolithic mode - all components in single process")
+        agent = KamilAgent()
     
     interface_type = input("Choose interface (voice/cli/web): ").strip().lower()
     
